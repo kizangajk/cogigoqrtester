@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Convites</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .form-container, .invite-list {
+            margin-bottom: 20px;
+        }
+        .invite {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .qr-code {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sistema de Gestão de Convites</h1>
+    <div class="form-container">
+        <h2>Criar Convite</h2>
+        <form id="inviteForm">
+            <label for="guestName">Nome do Convidado:</label>
+            <input type="text" id="guestName" required>
+            <br><br>
+            <label for="eventName">Evento:</label>
+            <input type="text" id="eventName" required>
+            <br><br>
+            <button type="submit">Gerar Convite</button>
+        </form>
+    </div>
+
+    <div class="invite-list">
+        <h2>Convites Gerados</h2>
+        <div id="invites"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="_javascript/script.js"></script>
+
+    <div class="validation-container">
+    <h2>Validar Convite</h2>
+    <input type="text" id="qrCodeInput" placeholder="Cole o conteúdo do QR Code aqui">
+    <button id="validateBtn">Validar</button>
+    <p id="validationResult"></p>
+</div>
+
+<div id="invitesContainer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/qr-scanner/qr-scanner.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsqr"></script>
+
+
+<div class="scanner-container">
+    <h2>Carregar Imagem com QR Code</h2>
+    <input type="file" id="qrImageInput" accept="image/*">
+    <p id="scanResult">Resultado: Nenhum QR Code lido.</p>
+</div>
+
+
+</body>
+</html>

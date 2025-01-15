@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Verificação de Convites</title>
+  <script src="https://cdn.jsdelivr.net/npm/html5-qrcode/minified/html5-qrcode.min.js"></script>
+  <script>
+    const dados = [
+  { id: 1, nome: "João Silva", codigo: "abc123", usado: false },
+  { id: 2, nome: "Maria Souza", codigo: "def456", usado: false }
+];
+  </script>
+</head>
+<body>
+  <h1>Verificação de Convites</h1>
+  <p>Use sua câmera para escanear um código QR.</p>
+  <div id="reader" style="width: 300px;"></div>
+  <p id="status"></p>
+
+  <script>
+    function iniciarLeitorQRCode() {
+      const html5QrCode = new Html5Qrcode("reader");
+
+      const onScanSuccess = (codigo) => {
+        // Verifica se o código corresponde a um convite válido
+        const convite = dados.find(d => `detalhes.html?codigo=${d.codigo}` === codigo.trim());
+        const status = document.getElementById('status');
+
+       if (convite) {
+      if (convite.usado) {
+        status.textContent = "Este convite já foi utilizado.";
+      } else {
+        status.textContent = "Convite válido! Redirecionando...";
+        convite.usado = true; // Marca como usado
+        window.location.href = `detalhes.html?codigo=${convite.codigo}`;
+      }
+    } else {
+      status.textContent = "Convite inválido. Tente novamente.";
+    }
+  };
+
+      const onScanFailure = (error) => {
+        console.warn("Falha ao escanear: ", error);
+      };
+
+      html5QrCode.start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, onScanSuccess, onScanFailure)
+        .catch(err => console.error("Erro ao iniciar o leitor de QR Code: ", err));
+    }
+
+    iniciarLeitorQRCode();
+  </script>
+</body>
+</html>
