@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Pessoas</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script>
+    const dados = [
+      { id: 1, nome: "João Silva", codigo: "abc123" },
+      { id: 2, nome: "Maria Souza", codigo: "def456" }
+    ];
+  </script>
+</head>
+<body>
+  <h1>Lista de Pessoas</h1>
+  <ul id="pessoa-lista"></ul>
+
+  <script>
+    function carregarPessoas() {
+      const lista = document.getElementById('pessoa-lista');
+      dados.forEach(pessoa => {
+        const item = document.createElement('li');
+        item.textContent = pessoa.nome;
+
+        const link = document.createElement('a');
+        link.href = `detalhes.html?codigo=${pessoa.codigo}`;
+        link.textContent = ' Ver Detalhes';
+
+        const qrCodeCanvas = document.createElement('canvas');
+        QRCode.toCanvas(qrCodeCanvas, `detalhes.html?codigo=${pessoa.codigo}`, function (error) {
+          if (error) console.error(error);
+        });
+
+        item.appendChild(link);
+        item.appendChild(qrCodeCanvas);
+        lista.appendChild(item);
+      });
+    }
+
+    carregarPessoas();
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes do Convite</title>
+  <script>
+    const dados = [
+      { id: 1, nome: "João Silva", codigo: "abc123" },
+      { id: 2, nome: "Maria Souza", codigo: "def456" }
+    ];
+  </script>
+</head>
+<body>
+  <h1>Detalhes</h1>
+  <div id="detalhes"></div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const codigo = urlParams.get('codigo');
+
+    const pessoa = dados.find(p => p.codigo === codigo);
+    const detalhesDiv = document.getElementById('detalhes');
+if (pessoa) {
+  detalhesDiv.innerHTML = `
+    <p><strong>Nome:</strong> ${pessoa.nome}</p>
+    <p><strong>Código:</strong> ${pessoa.codigo}</p>
+    <p><strong>Status:</strong> ${pessoa.usado ? "Convite já utilizado" : "Convite válido"}</p>
+  `;
+} else {
+  detalhesDiv.textContent = 'Convite não encontrado!';
+}
+
+  </script>
+</body>
+</html>
+
