@@ -114,7 +114,7 @@ canvas {
     border-radius: 50%; /* Torna a imagem circular */
     margin-right: 10px;
     background-color: #fdf3;
-    background-image: url(_imgs/R.png);
+    background-image: url(R.png);
 
     /*border: 2px solid #ff6347;  Borda para destaque */
 
