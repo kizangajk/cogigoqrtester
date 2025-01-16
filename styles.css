@@ -106,3 +106,16 @@ canvas {
 #detalhes p strong {
   color: #4CAF50;
 }
+
+#icon img{
+    margin: auto 50px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Torna a imagem circular */
+    margin-right: 10px;
+    background-color: #fdf3;
+    background-image: url(_imgs/R.png);
+
+    /*border: 2px solid #ff6347;  Borda para destaque */
+
+}
