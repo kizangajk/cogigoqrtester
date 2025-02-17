@@ -16,9 +16,9 @@
     <div class="container">
         <nav class="menu">
             <ul>
-                <li><a href="cadastro.html" id="confirmar">Cadastrar Convidado<img src="_imgs/icons/3914337.png" class="figurinha"></a></li>
-                <li><a href="validar.html">Validar convites<img src="_imgs/icons/3916632.png" class="figurinha" style="margin-left: 5px"></a></li>
-                <li><a href="validar.html" id="confirma">Relatórios<img src="_imgs/icons/5528023.png" class="figurinha"  style="margin-left: 5px"></a></li>
+                <li><a href="cadastro.html" id="confirmar">Cadastrar Convidado<img src="3914337.png" class="figurinha"></a></li>
+                <li><a href="validar.html">Validar convites<img src="3916632.png" class="figurinha" style="margin-left: 5px"></a></li>
+                <li><a href="validar.html" id="confirma">Relatórios<img src="5528023.png" class="figurinha"  style="margin-left: 5px"></a></li>
             </ul>
         </nav>
         <main class="content">
@@ -26,12 +26,12 @@
             <table>
                 <thead>
                     <tr>
-                        <th><img src="_imgs/icons/3917581.png" class="figurinha">Nome</th>
-                        <th><img src="_imgs/icons/3916996.png" class="figurinha">Entidade</th>
-                        <th><img src="_imgs/icons/5068658.png" class="figurinha">E-mail</th>
-                        <th><img src="_imgs/icons/5068703.png" class="figurinha">Telefone</th>
-                        <th><img src="_imgs/icons/3917750.png" class="figurinha">Estado</th>
-                        <th><img src="_imgs/icons/3917764.png" class="figurinha">Ações</th>
+                        <th><img src="3917581.png" class="figurinha">Nome</th>
+                        <th><img src="3916996.png" class="figurinha">Entidade</th>
+                        <th><img src="5068658.png" class="figurinha">E-mail</th>
+                        <th><img src="5068703.png" class="figurinha">Telefone</th>
+                        <th><img src="3917750.png" class="figurinha">Estado</th>
+                        <th><img src="3917764.png" class="figurinha">Ações</th>
                     </tr>
                 </thead>
                 <tbody id="itemList">
@@ -92,7 +92,7 @@
                     <td>${item.email}</td>
                     <td>${item.telefone}</td>
                     <td class="${item.estado === 'válido' ? 'valid' : 'used'}">${item.estado}</td>
-                    <td><button class="details-btn" onclick="window.location.href='detalhes.html?codigo=${item.codigo}';"><img src="_imgs/icons/3917752.png" class="figurinha">Ver Convite</button></td>
+                    <td><button class="details-btn" onclick="window.location.href='detalhes.html?codigo=${item.codigo}';"><img src="3917752.png" class="figurinha">Ver Convite</button></td>
                 `;
                 tbody.appendChild(row);
             });
