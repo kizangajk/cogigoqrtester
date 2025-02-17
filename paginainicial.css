@@ -1,0 +1,128 @@
+  body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+        }
+        header {
+            background-color: #5F9EA0;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 24px;
+        }
+        header span {
+            font-weight: bold;
+            color: white;
+        }
+        .container {
+            display: flex;
+        }
+        .menu {
+            width: 200px;
+            background: #5F9EA0;
+            padding: 15px;
+            height: 100vh;
+        }
+        .menu ul {
+            list-style: none;
+            padding: 0;
+            list-style: none;
+            padding: 0;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        .menu li {
+            margin: 10px 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .menu a{
+            color: #008B8B;
+  text-decoration: none;
+  font-weight: bold;
+        }
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        .search-box {
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        .valid {
+            color: green;
+        }
+        .used {
+            color: black;
+        }
+        .details-btn {
+            background-color: blue;
+            color: white;
+            padding: 5px;
+            cursor: pointer;
+            border: none;
+        }
+        .pagination {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .pagination button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+
+
+/* Cabeçalho */
+h1 {
+  text-align: center;
+  color: #white;
+  margin: 20px 0;
+}
+
+a{
+    text-decoration: none;
+
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 0 5px;
+}
+
+.action-btn i {
+    color: #333;
+}
+
+.action-btn:hover i {
+    color: #007bff;
+}
+
+.figurinha{
+     width: 16px; /* Ajuste o tamanho conforme necessário */
+    height: 16px;
+    vertical-align: middle; /* Alinha os ícones ao texto */
+    margin-right: 5px; /* Espaçamento entre o ícone e o texto */
+}
