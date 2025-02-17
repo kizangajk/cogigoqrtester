@@ -7,25 +7,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detalhes do Convite</title>
   <script>
-    const dados = [
-      { id: 1, nome: "João Silva", codigo: "abc123", entidade: "Entidade A", email: "joaosilva@gmail.com", telefone: 9999999, usado: false, estado: "Válido"},
-      { id: 4, nome: "Anita Morais", codigo: "hij890", entidade: "Aliança", usado: false, email: "anita@eamil.com", telefone:9032323, estado:"Válido"},
-      { id: 1, nome: "João Silva", codigo: "abc123", entidade: "Entidade A", email: "joaosilva@gmail.com", telefone: 9999999, usado: false, estado: "Válido" },
-    { id: 2, nome: "Maria Oliveira", codigo: "def456", entidade: "Entidade B", email: "maria.oliveira@email.com", telefone: 9888888, usado: false, estado: "Válido" },
-    { id: 3, nome: "Carlos Santos", codigo: "ghi789", entidade: "Entidade C", email: "carlos.santos@email.com", telefone: 9777777, usado: true, estado: "Usado" },
-    { id: 17, nome: "Ana Costa", codigo: "jkl012", entidade: "Entidade A", email: "ana.costa@email.com", telefone: 9666666, usado: false, estado: "Válido" },
-    { id: 5, nome: "Pedro Martins", codigo: "mno345", entidade: "Entidade D", email: "pedro.martins@email.com", telefone: 9555555, usado: false, estado: "Válido" },
-    { id: 6, nome: "Luciana Ferreira", codigo: "pqr678", entidade: "Entidade E", email: "luciana.ferreira@email.com", telefone: 9444444, usado: true, estado: "Usado" },
-    { id: 7, nome: "Ricardo Almeida", codigo: "stu901", entidade: "Entidade B", email: "ricardo.almeida@email.com", telefone: 9333333, usado: false, estado: "Válido" },
-    { id: 8, nome: "Juliana Mendes", codigo: "vwx234", entidade: "Entidade C", email: "juliana.mendes@email.com", telefone: 9222222, usado: false, estado: "Válido" },
-    { id: 9, nome: "Fernando Lima", codigo: "yz1234", entidade: "Entidade D", email: "fernando.lima@email.com", telefone: 9111111, usado: true, estado: "Usado" },
-    { id: 10, nome: "Patrícia Rocha", codigo: "abc567", entidade: "Entidade A", email: "patricia.rocha@email.com", telefone: 9000000, usado: false, estado: "Válido" },
-    { id: 11, nome: "André Gonçalves", codigo: "def890", entidade: "Entidade E", email: "andre.goncalves@email.com", telefone: 9881234, usado: false, estado: "Válido" },
-    { id: 12, nome: "Beatriz Sousa", codigo: "ghi234", entidade: "Entidade B", email: "beatriz.sousa@email.com", telefone: 9775678, usado: true, estado: "Usado" },
-    { id: 13, nome: "Eduardo Campos", codigo: "jkl567", entidade: "Entidade C", email: "eduardo.campos@email.com", telefone: 9669101, usado: false, estado: "Válido" },
-    { id: 14, nome: "Camila Ramos", codigo: "mno890", entidade: "Entidade D", email: "camila.ramos@email.com", telefone: 9552345, usado: false, estado: "Válido" },
-    { id: 15, nome: "Rafael Nunes", codigo: "pqr123", entidade: "Entidade E", email: "rafael.nunes@email.com", telefone: 9446789, usado: true, estado: "Usado" },
-    { id: 16, nome: "Sofia Batista", codigo: "stu456", entidade: "Entidade A", email: "sofia.batista@email.com", telefone: 9337890, usado: false, estado: "Válido" }
+    const dados =  [
+      { id: 1, nome: "João Silva", codigo: "abc123", entidade: "Entidade A", email: "joaosilva@gmail.com", telefone: 9999999, usado: false, estado: "Válido", tipo: "Individual"},
+      { id: 4, nome: "Anita Morais", codigo: "hij890", entidade: "Aliança", usado: false, email: "anita@eamil.com", telefone:9032323, estado:"Válido", tipo: "Individual"},
+      { id: 1, nome: "João Silva", codigo: "abc123", entidade: "Entidade A", email: "joaosilva@gmail.com", telefone: 9999999, usado: false, estado: "Válido", tipo: "Individual"},
+    { id: 2, nome: "Maria Oliveira", codigo: "def456", entidade: "Entidade B", email: "maria.oliveira@email.com", telefone: 9888888, usado: false, estado: "Válido", tipo: "Individual" },
+    { id: 3, nome: "Carlos Santos", codigo: "ghi789", entidade: "Entidade C", email: "carlos.santos@email.com", telefone: 9777777, usado: true, estado: "Usado", tipo: "Individual" },
+    { id: 17, nome: "Ana Costa", codigo: "jkl012", entidade: "Entidade A", email: "ana.costa@email.com", telefone: 9666666, usado: false, estado: "Válido", tipo: "Individual" },
+    { id: 5, nome: "Pedro Martins", codigo: "mno345", entidade: "Entidade D", email: "pedro.martins@email.com", telefone: 9555555, usado: false, estado: "Válido", tipo: "Individual" },
+    { id: 6, nome: "Luciana Ferreira", codigo: "pqr678", entidade: "Entidade E", email: "luciana.ferreira@email.com", telefone: 9444444, usado: true, estado: "Usado", tipo: "Individual" },
+    { id: 7, nome: "Ricardo Almeida", codigo: "stu901", entidade: "Entidade B", email: "ricardo.almeida@email.com", telefone: 9333333, usado: false, estado: "Válido", tipo: "Individual" },
+    { id: 8, nome: "Juliana Mendes", codigo: "vwx234", entidade: "Entidade C", email: "juliana.mendes@email.com", telefone: 9222222, usado: false, estado: "Válido", tipo: "Individual" },
+    { id: 9, nome: "Fernando Lima", codigo: "yz1234", entidade: "Entidade D", email: "fernando.lima@email.com", telefone: 9111111, usado: true, estado: "Usado", tipo: "Individual" },
+    { id: 10, nome: "Patrícia Rocha", codigo: "abc567", entidade: "Entidade A", email: "patricia.rocha@email.com", telefone: 9000000, usado: false, estado: "Válido", tipo: "Individual" },
+    { id: 11, nome: "André Gonçalves", codigo: "def890", entidade: "Entidade E", email: "andre.goncalves@email.com", telefone: 9881234, usado: false, estado: "Válido", tipo: "Individual" },
+    { id: 12, nome: "Beatriz Sousa", codigo: "ghi234", entidade: "Entidade B", email: "beatriz.sousa@email.com", telefone: 9775678, usado: true, estado: "Usado", tipo: "Individual" },
+    { id: 13, nome: "Eduardo Campos", codigo: "jkl567", entidade: "Entidade C", email: "eduardo.campos@email.com", telefone: 9669101, usado: false, estado: "Válido", tipo: "Individual" },
+    { id: 14, nome: "Camila Ramos", codigo: "mno890", entidade: "Entidade D", email: "camila.ramos@email.com", telefone: 9552345, usado: false, estado: "Válido", tipo: "Individual" },
+    { id: 15, nome: "Rafael Nunes", codigo: "pqr123", entidade: "Entidade E", email: "rafael.nunes@email.com", telefone: 9446789, usado: true, estado: "Usado", tipo: "Individual" },
+    { id: 16, nome: "Sofia Batista", codigo: "stu456", entidade: "Entidade A", email: "sofia.batista@email.com", telefone: 9337890, usado: false, estado: "Válido", tipo: "Individual" }
     ];
   </script>
 </head>
@@ -44,14 +44,14 @@
 if (pessoa) {
   detalhesDiv.innerHTML = `
      <div id="icon"></div>
-    <p><img src="_imgs/icons/3917581.png" class="figurinha"><strong>Nome:</strong> ${pessoa.nome}</p>
-    <p><img src="_imgs/icons/3916996.png" class="figurinha"><strong>Entidade:</strong> ${pessoa.entidade}</p>
-    <p><img src="_imgs/icons/3916713.png" class="figurinha"><strong>Tipo De Convite:</strong> ${pessoa.tipo}</p>
-    <p><img src="_imgs/icons/3917750.png" class="figurinha"><strong>Estado:</strong> ${pessoa.usado ? "Convite já utilizado" : "Convite válido(0/1)"}</p>
-    <p><img src="_imgs/icons/3917309.png" class="figurinha"><strong>Horário De Chegada:</strong><span id="horarioChegada"></span></p>
+    <p><img src="3917581.png" class="figurinha"><strong>Nome:</strong> ${pessoa.nome}</p>
+    <p><img src="3916996.png" class="figurinha"><strong>Entidade:</strong> ${pessoa.entidade}</p>
+    <p><img src="3916713.png" class="figurinha"><strong>Tipo De Convite:</strong> ${pessoa.tipo}</p>
+    <p><img src="3917750.png" class="figurinha"><strong>Estado:</strong> ${pessoa.usado ? "Convite já utilizado" : "Convite válido(0/1)"}</p>
+    <p><img src="3917309.png" class="figurinha"><strong>Horário De Chegada:</strong><span id="horarioChegada"></span></p>
          <div class="btns">
-        <a><button style="background-color: blue" class="confirm-btn" id="openModal">Confirmar Entrada<img src="_imgs/icons/3917442.png" class="figurinha" style="margin-left: 5px"></button></a>
-        <a href=validar.html><button style="background-color: red">Cancelar<img src="_imgs/icons/3917050.png" class="figurinha" style="margin-left: 5px"></button></a>
+        <a><button style="background-color: blue" class="confirm-btn" id="openModal">Confirmar Entrada<img src="3917442.png" class="figurinha" style="margin-left: 5px"></button></a>
+        <a href=validar.html><button style="background-color: red">Cancelar<img src="3917050.png" class="figurinha" style="margin-left: 5px"></button></a>
     </div>
   `;
 
