@@ -1,60 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Verificação de Convites</title>
-  <script src="https://cdn.jsdelivr.net/npm/html5-qrcode/minified/html5-qrcode.min.js"></script>
-  <script>
-    const dados = [
-  { id: 1, nome: "João Silva", codigo: "abc123", usado: false },
-  { id: 2, nome: "Maria Souza", codigo: "def456", usado: true },
-  {id: 3, nome: "Caetano Pedro", codigo: "deg457", usado: false},
-  {id: 4, nome: "Anita Morais", codigo: "hij890", usado: false }    
-];
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styls.css">
+    <link rel="stylesheet" href="paginainicial.css">
+
+    <title>Lista de Itens</title>
+    <style>
+      
+    </style>
 </head>
 <body>
-  <h1>Verificação de Convites</h1>
-  <p>Use sua câmera para escanear um código QR.</p>
-  <div id="reader" style="width: 300px;"></div>
-  <p id="status"></p>
+    <header><span>LISTA DE CONVIDADOS</span></header>
+    <div class="container">
+        <nav class="menu">
+            <ul>
+                <li><a href="cadastro.html" id="confirmar">Cadastrar Convidado<img src="_imgs/icons/3914337.png" class="figurinha"></a></li>
+                <li><a href="validar.html">Validar convites<img src="_imgs/icons/3916632.png" class="figurinha" style="margin-left: 5px"></a></li>
+                <li><a href="validar.html" id="confirma">Relatórios<img src="_imgs/icons/5528023.png" class="figurinha"  style="margin-left: 5px"></a></li>
+            </ul>
+        </nav>
+        <main class="content">
+            <input type="text" id="search" class="search-box" placeholder="Buscar por nome...">
+            <table>
+                <thead>
+                    <tr>
+                        <th><img src="_imgs/icons/3917581.png" class="figurinha">Nome</th>
+                        <th><img src="_imgs/icons/3916996.png" class="figurinha">Entidade</th>
+                        <th><img src="_imgs/icons/5068658.png" class="figurinha">E-mail</th>
+                        <th><img src="_imgs/icons/5068703.png" class="figurinha">Telefone</th>
+                        <th><img src="_imgs/icons/3917750.png" class="figurinha">Estado</th>
+                        <th><img src="_imgs/icons/3917764.png" class="figurinha">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="itemList">
+                    <!-- Itens gerados dinamicamente -->
+                </tbody>
+            </table>
+            <div class="pagination">
+                <button id="prevPage" disabled>Anterior</button>
+                <span id="pageInfo"></span>
+                <button id="nextPage">Próximo</button>
+            </div>
+        </main>
+    </div>
+    <script>
+        const items = [
+      { id: 1, nome: "João Silva", codigo: "abc123", entidade: "Entidade A", email: "joaosilva@gmail.com", telefone: 9999999, usado: false, estado: "Válido"},
+      { id: 4, nome: "Anita Morais", codigo: "hij890", entidade: "Aliança", usado: false, email: "anita@eamil.com", telefone:9032323, estado:"Válido"},
+      { id: 1, nome: "João Silva", codigo: "abc123", entidade: "Entidade A", email: "joaosilva@gmail.com", telefone: 9999999, usado: false, estado: "Válido" },
+    { id: 2, nome: "Maria Oliveira", codigo: "def456", entidade: "Entidade B", email: "maria.oliveira@email.com", telefone: 9888888, usado: false, estado: "Válido" },
+    { id: 3, nome: "Carlos Santos", codigo: "ghi789", entidade: "Entidade C", email: "carlos.santos@email.com", telefone: 9777777, usado: true, estado: "Usado" },
+    { id: 17, nome: "Ana Costa", codigo: "jkl012", entidade: "Entidade A", email: "ana.costa@email.com", telefone: 9666666, usado: false, estado: "Válido" },
+    { id: 5, nome: "Pedro Martins", codigo: "mno345", entidade: "Entidade D", email: "pedro.martins@email.com", telefone: 9555555, usado: false, estado: "Válido" },
+    { id: 6, nome: "Luciana Ferreira", codigo: "pqr678", entidade: "Entidade E", email: "luciana.ferreira@email.com", telefone: 9444444, usado: true, estado: "Usado" },
+    { id: 7, nome: "Ricardo Almeida", codigo: "stu901", entidade: "Entidade B", email: "ricardo.almeida@email.com", telefone: 9333333, usado: false, estado: "Válido" },
+    { id: 8, nome: "Juliana Mendes", codigo: "vwx234", entidade: "Entidade C", email: "juliana.mendes@email.com", telefone: 9222222, usado: false, estado: "Válido" },
+    { id: 9, nome: "Fernando Lima", codigo: "yz1234", entidade: "Entidade D", email: "fernando.lima@email.com", telefone: 9111111, usado: true, estado: "Usado" },
+    { id: 10, nome: "Patrícia Rocha", codigo: "abc567", entidade: "Entidade A", email: "patricia.rocha@email.com", telefone: 9000000, usado: false, estado: "Válido" },
+    { id: 11, nome: "André Gonçalves", codigo: "def890", entidade: "Entidade E", email: "andre.goncalves@email.com", telefone: 9881234, usado: false, estado: "Válido" },
+    { id: 12, nome: "Beatriz Sousa", codigo: "ghi234", entidade: "Entidade B", email: "beatriz.sousa@email.com", telefone: 9775678, usado: true, estado: "Usado" },
+    { id: 13, nome: "Eduardo Campos", codigo: "jkl567", entidade: "Entidade C", email: "eduardo.campos@email.com", telefone: 9669101, usado: false, estado: "Válido" },
+    { id: 14, nome: "Camila Ramos", codigo: "mno890", entidade: "Entidade D", email: "camila.ramos@email.com", telefone: 9552345, usado: false, estado: "Válido" },
+    { id: 15, nome: "Rafael Nunes", codigo: "pqr123", entidade: "Entidade E", email: "rafael.nunes@email.com", telefone: 9446789, usado: true, estado: "Usado" },
+    { id: 16, nome: "Sofia Batista", codigo: "stu456", entidade: "Entidade A", email: "sofia.batista@email.com", telefone: 9337890, usado: false, estado: "Válido" }
+    ];
+        
+        let currentPage = 1;
+        const itemsPerPage = 15;
+        
+        function renderItems(filter = "") {
+            const tbody = document.getElementById("itemList");
+            tbody.innerHTML = "";
+            
+            const filteredItems = items.filter(item => item.nome.toLowerCase().includes(filter.toLowerCase()));
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+            
+            document.getElementById("pageInfo").textContent = `Página ${currentPage} de ${totalPages}`;
+            document.getElementById("prevPage").disabled = currentPage === 1;
+            document.getElementById("nextPage").disabled = currentPage === totalPages;
+            
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            
+            filteredItems.slice(start, end).forEach((item, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.nome}</td>
+                    <td>${item.entidade}</td>
+                    <td>${item.email}</td>
+                    <td>${item.telefone}</td>
+                    <td class="${item.estado === 'válido' ? 'valid' : 'used'}">${item.estado}</td>
+                    <td><button class="details-btn" onclick="window.location.href='detalhes.html?codigo=${item.codigo}';"><img src="_imgs/icons/3917752.png" class="figurinha">Ver Convite</button></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+        
+        function viewDetails(index) {
+            const item = items[index];
+            alert(`Detalhes:\nNome: ${item.nome}\nEntidade: ${item.entidade}\nEmail: ${item.email}\nTelefone: ${item.telefone}\nEstado: ${item.estado}`);
+        }
+        
+        document.getElementById("search").addEventListener("input", function() {
+            currentPage = 1;
+            renderItems(this.value);
+        });
+        
+        document.getElementById("prevPage").addEventListener("click", function() {
+            if (currentPage > 1) {
+                currentPage--;
+                renderItems(document.getElementById("search").value);
+            }
+        });
+        
+        document.getElementById("nextPage").addEventListener("click", function() {
+            const totalPages = Math.ceil(items.length / itemsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderItems(document.getElementById("search").value);
+            }
+        });
+        
+        renderItems();
 
-  <script>
-    function iniciarLeitorQRCode() {
-      const html5QrCode = new Html5Qrcode("reader");
+         document.getElementById("confirmar").addEventListener("click", function(event) {
+        event.preventDefault(); // Impede o redirecionamento imediato
+        let confirmar = alert("Função inativa. Nenhum evento registrado!");
+        /*if (confirmar) {
+            window.location.href = this.href; // Redireciona apenas se o usuário confirmar
+        }*/
+    });
 
-      const onScanSuccess = (codigo) => {
-        // Verifica se o código corresponde a um convite válido
-        const convite = dados.find(d => `detalhes.html?codigo=${d.codigo}` === codigo.trim());
-        const status = document.getElementById('status');
-
-       if (convite) {
-      if (convite.usado) {
-        status.textContent = "Este convite já foi utilizado.";
-      } else {
-        status.textContent = "Convite válido! Redirecionando...";
-        convite.usado = true; // Marca como usado
-        window.location.href = `detalhes.html?codigo=${convite.codigo}`;
-      }
-    } else {
-      status.textContent = "Convite inválido. Tente novamente.";
-    }
-  };
-
-      const onScanFailure = (error) => {
-        console.warn("Falha ao escanear: ", error);
-      };
-
-      html5QrCode.start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, onScanSuccess, onScanFailure)
-        .catch(err => console.error("Erro ao iniciar o leitor de QR Code: ", err));
-    }
-
-    iniciarLeitorQRCode();
-  </script>
+          document.getElementById("confirma").addEventListener("click", function(event) {
+        event.preventDefault(); // Impede o redirecionamento imediato
+        let confirmar = alert("Função inativa. Nenhum evento registrado!");
+        /*if (confirmar) {
+            window.location.href = this.href; // Redireciona apenas se o usuário confirmar
+        }*/
+    });
+    </script>
 </body>
 </html>
