@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="poupup.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detalhes do Convite</title>
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <script>
-    const dados =[
+    const dados = [
       { id: 1, nome: "João Silva", codigo: "abc123", entidade: "Entidade A", email: "joaosilva@gmail.com", telefone: 9999999, usado: false, estado: "Válido"},
       { id: 4, nome: "Anita Morais", codigo: "hij890", entidade: "Aliança", usado: false, email: "anita@eamil.com", telefone:9032323, estado:"Válido"},
       { id: 1, nome: "João Silva", codigo: "abc123", entidade: "Entidade A", email: "joaosilva@gmail.com", telefone: 9999999, usado: false, estado: "Válido" },
@@ -30,8 +30,11 @@
   </script>
 </head>
 <body>
-  <h1>Detalhes</h1>
+  <h1>Validar Convite</h1>
   <div id="detalhes"></div>
+
+
+
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const codigo = urlParams.get('codigo');
@@ -40,48 +43,83 @@
     const detalhesDiv = document.getElementById('detalhes');
 if (pessoa) {
   detalhesDiv.innerHTML = `
-    <div id="icon"></div>
+     <div id="icon"></div>
     <p><img src="_imgs/icons/3917581.png" class="figurinha"><strong>Nome:</strong> ${pessoa.nome}</p>
     <p><img src="_imgs/icons/3916996.png" class="figurinha"><strong>Entidade:</strong> ${pessoa.entidade}</p>
-    <p><img src="_imgs/icons/5068658.png" class="figurinha"><strong>E-mail:</strong> ${pessoa.email}</p>
-    <p><img src="_imgs/icons/5068703.png" class="figurinha"><strong>Telefone:</strong> ${pessoa.telefone}</p>
     <p><img src="_imgs/icons/3916713.png" class="figurinha"><strong>Tipo De Convite:</strong> ${pessoa.tipo}</p>
-    <p><img src="_imgs/icons/3917750.png" class="figurinha"><strong>Estado:</strong> ${pessoa.usado ? "Convite já utilizado(1/1)" : "Convite válido(0/1)"}</p>
-    <p><img src="_imgs/icons/3917309.png" class="figurinha"><strong>Horário De Chegada:</strong> ${pessoa.usado ? "11h:30min" : "-"}</p>
-    <p><img src="_imgs/icons/3917085.png" class="figurinha"><strong>Qr Code:</strong></p>
-    <div id="imagemdocodigoqr"></div>
-     <div class="botoes">
-        <a href=paginainicial.html><button id="confirmar">Enviar Convite<img src="_imgs/icons/3917785.png" class="figurinha" style="margin-left: 5px"></button></a>
-         <a href=paginainicial.html><button style="background-color: blue">Editar Convite<img src="_imgs/icons/3917457.png" class="figurinha" style="margin-left: 5px"></button></a>
-        <a href=paginainicial.html><button style="background-color: red">Eliminar Convite<img src="_imgs/icons/3917772.png" class="figurinha" style="margin-left: 5px"></button></a>
+    <p><img src="_imgs/icons/3917750.png" class="figurinha"><strong>Estado:</strong> ${pessoa.usado ? "Convite já utilizado" : "Convite válido(0/1)"}</p>
+    <p><img src="_imgs/icons/3917309.png" class="figurinha"><strong>Horário De Chegada:</strong><span id="horarioChegada"></span></p>
+         <div class="btns">
+        <a><button style="background-color: blue" class="confirm-btn" id="openModal">Confirmar Entrada<img src="_imgs/icons/3917442.png" class="figurinha" style="margin-left: 5px"></button></a>
+        <a href=validar.html><button style="background-color: red">Cancelar<img src="_imgs/icons/3917050.png" class="figurinha" style="margin-left: 5px"></button></a>
     </div>
-     <a href=paginainicial.html><button style="background-color: black">Voltar</button></a>
-   
-   
   `;
 
-  const qrCodeCanvas = document.createElement('canvas');
-        QRCode.toCanvas(qrCodeCanvas, `detalhes.html?codigo=${pessoa.codigo}`, function (error) {
-          if (error) console.error(error);
-        });
-
-        document.getElementById('imagemdocodigoqr').appendChild(qrCodeCanvas);
 } else {
   detalhesDiv.textContent = 'Convite não encontrado!';
-  detalhesDiv.innerHTML ='<a href=paginainicial.html></p>'
+  detalhesDiv.innerHTML ='<a href=validar.html></p>'
 }
 
-  document.getElementById("confirmar").addEventListener("click", function(event) {
-        event.preventDefault(); // Impede o redirecionamento imediato
-        let confirmar = alert("Função inativa. Nenhum evento registrado");
-        /*if (confirmar) {
-            window.location.href = this.href; // Redireciona apenas se o usuário confirmar
-        }*/
-    });
 
   </script>
 
-  
+  <!-- Modal de Confirmação -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <h2>Antenção! Uma vez que a entrada é confirmada, este código não poderá ser reutilizado.</h2>
+            <div class="modal-buttons">
+                <button class="confirm" id="confirmAction">Confirmar</button>
+                <button class="cancel" id="closeModal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Obtém os elementos
+        const modal = document.getElementById("confirmationModal");
+        const openModalBtn = document.getElementById("openModal");
+        const closeModalBtn = document.getElementById("closeModal");
+        const confirmActionBtn = document.getElementById("confirmAction");
+
+        // Abrir o modal ao clicar no botão
+        openModalBtn.addEventListener("click", () => {
+            modal.style.display = "flex";
+        });
+
+        // Fechar o modal ao clicar em "Não"
+        closeModalBtn.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        // Confirmar a ação e redirecionar ao clicar em "Sim"
+        confirmActionBtn.addEventListener("click", () => {
+            window.location.href = "inicio.html"; // Redireciona para a página desejada
+        });
+
+        // Fechar o modal ao clicar fora dele
+        window.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+
+        function atualizarHorario() {
+        const agora = new Date();
+        const horas = agora.getHours().toString().padStart(2, '0');
+        const minutos = agora.getMinutes().toString().padStart(2, '0');
+        const segundos = agora.getSeconds().toString().padStart(2, '0');
+
+        // Formatar horário no estilo HH:MM:SS
+        const horarioFormatado = `${horas}:${minutos}:${segundos}`;
+
+        // Inserir o horário no elemento HTML
+        document.getElementById("horarioChegada").textContent = horarioFormatado;
+    }
+
+    // Atualiza o horário ao carregar a página
+    atualizarHorario();
+
+    
+    </script>
 </body>
 </html>
-

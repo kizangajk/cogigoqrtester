@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="styles.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detalhes do Convite</title>
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <title>Verificação de Convites</title>
+  <script src="https://cdn.jsdelivr.net/npm/html5-qrcode/minified/html5-qrcode.min.js"></script>
   <script>
-    const dados =[
+    const dados = [
       { id: 1, nome: "João Silva", codigo: "abc123", entidade: "Entidade A", email: "joaosilva@gmail.com", telefone: 9999999, usado: false, estado: "Válido"},
       { id: 4, nome: "Anita Morais", codigo: "hij890", entidade: "Aliança", usado: false, email: "anita@eamil.com", telefone:9032323, estado:"Válido"},
       { id: 1, nome: "João Silva", codigo: "abc123", entidade: "Entidade A", email: "joaosilva@gmail.com", telefone: 9999999, usado: false, estado: "Válido" },
@@ -30,58 +33,42 @@
   </script>
 </head>
 <body>
-  <h1>Detalhes</h1>
-  <div id="detalhes"></div>
+  <h1>Verificação de Convites</h1>
+  <p>Use sua câmera para escanear um código QR.</p>
+  <div id="reader" style="width: 300px;"></div>
+  <p id="status"></p>
+
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const codigo = urlParams.get('codigo');
+    function iniciarLeitorQRCode() {
+      const html5QrCode = new Html5Qrcode("reader");
 
-    const pessoa = dados.find(p => p.codigo === codigo);
-    const detalhesDiv = document.getElementById('detalhes');
-if (pessoa) {
-  detalhesDiv.innerHTML = `
-    <div id="icon"></div>
-    <p><img src="_imgs/icons/3917581.png" class="figurinha"><strong>Nome:</strong> ${pessoa.nome}</p>
-    <p><img src="_imgs/icons/3916996.png" class="figurinha"><strong>Entidade:</strong> ${pessoa.entidade}</p>
-    <p><img src="_imgs/icons/5068658.png" class="figurinha"><strong>E-mail:</strong> ${pessoa.email}</p>
-    <p><img src="_imgs/icons/5068703.png" class="figurinha"><strong>Telefone:</strong> ${pessoa.telefone}</p>
-    <p><img src="_imgs/icons/3916713.png" class="figurinha"><strong>Tipo De Convite:</strong> ${pessoa.tipo}</p>
-    <p><img src="_imgs/icons/3917750.png" class="figurinha"><strong>Estado:</strong> ${pessoa.usado ? "Convite já utilizado(1/1)" : "Convite válido(0/1)"}</p>
-    <p><img src="_imgs/icons/3917309.png" class="figurinha"><strong>Horário De Chegada:</strong> ${pessoa.usado ? "11h:30min" : "-"}</p>
-    <p><img src="_imgs/icons/3917085.png" class="figurinha"><strong>Qr Code:</strong></p>
-    <div id="imagemdocodigoqr"></div>
-     <div class="botoes">
-        <a href=paginainicial.html><button id="confirmar">Enviar Convite<img src="_imgs/icons/3917785.png" class="figurinha" style="margin-left: 5px"></button></a>
-         <a href=paginainicial.html><button style="background-color: blue">Editar Convite<img src="_imgs/icons/3917457.png" class="figurinha" style="margin-left: 5px"></button></a>
-        <a href=paginainicial.html><button style="background-color: red">Eliminar Convite<img src="_imgs/icons/3917772.png" class="figurinha" style="margin-left: 5px"></button></a>
-    </div>
-     <a href=paginainicial.html><button style="background-color: black">Voltar</button></a>
-   
-   
-  `;
+      const onScanSuccess = (codigo) => {
+        // Verifica se o código corresponde a um convite válido
+        const convite = dados.find(d => `detalhes.html?codigo=${d.codigo}` === codigo.trim());
+        const status = document.getElementById('status');
 
-  const qrCodeCanvas = document.createElement('canvas');
-        QRCode.toCanvas(qrCodeCanvas, `detalhes.html?codigo=${pessoa.codigo}`, function (error) {
-          if (error) console.error(error);
-        });
+       if (convite) {
+      if (convite.usado) {
+        status.textContent = "Este convite já foi utilizado.";
+      } else {
+        status.textContent = "Convite válido! Redirecionando...";
+        convite.usado = true; // Marca como usado
+        window.location.href = `verificarconvite.html?codigo=${convite.codigo}`;
+      }
+    } else {
+      status.textContent = "Convite inválido. Tente novamente.";
+    }
+  };
 
-        document.getElementById('imagemdocodigoqr').appendChild(qrCodeCanvas);
-} else {
-  detalhesDiv.textContent = 'Convite não encontrado!';
-  detalhesDiv.innerHTML ='<a href=paginainicial.html></p>'
-}
+      const onScanFailure = (error) => {
+        console.warn("Falha ao escanear: ", error);
+      };
 
-  document.getElementById("confirmar").addEventListener("click", function(event) {
-        event.preventDefault(); // Impede o redirecionamento imediato
-        let confirmar = alert("Função inativa. Nenhum evento registrado");
-        /*if (confirmar) {
-            window.location.href = this.href; // Redireciona apenas se o usuário confirmar
-        }*/
-    });
+      html5QrCode.start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, onScanSuccess, onScanFailure)
+        .catch(err => console.error("Erro ao iniciar o leitor de QR Code: ", err));
+    }
 
+    iniciarLeitorQRCode();
   </script>
-
-  
 </body>
 </html>
-
